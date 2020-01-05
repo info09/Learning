@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TeduShop.Data.Infrastructure
 {
-    public interface IRepostiory<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // Marks an entity as new
         T Add(T entity);
