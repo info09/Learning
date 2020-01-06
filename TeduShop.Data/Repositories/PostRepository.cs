@@ -10,7 +10,7 @@ namespace TeduShop.Data.Repositories
 {
     public interface IPostRepository : IRepository<Post>
     {
-        
+        IEnumerable<Post> GetAllByTag(string tag, out int totalRow, int page, int pageSize);
     }
 
     public class PostRepository : RepositoryBase<Post>, IPostRepository
@@ -18,6 +18,17 @@ namespace TeduShop.Data.Repositories
         public PostRepository(IDbFactory dbFactory) : base(dbFactory)
         {
 
+        }
+
+        public IEnumerable<Post> GetAllByTag(string tag, out int totalRow, int page, int pageSize)
+        {
+            var query = (from p in DbContext.Posts
+                         join pt in DbContext.PostTags on p.ID equals pt.PostID
+                         where pt.TagID == tag
+                         select p);
+            totalRow = query.Count();
+            query = query.Skip((page - 1) * pageSize).Take(pageSize);
+            return query;
         }
     }
 }
