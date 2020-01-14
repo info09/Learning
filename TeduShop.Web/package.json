@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "angular": "1.7.9",
-    "angular-ui-router": "1.0.24"
+    "angular-ui-router": "1.0.24",
+    "bootstrap": "4.4.1"
   }
 }
