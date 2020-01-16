@@ -16,22 +16,35 @@ namespace TeduShop.Web.Api
     public class ProductCategoryController : ApiControllerBase
     {
         private IProductCategoryService _productCategoryService;
-        public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService):base(errorService)
+        public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService) : base(errorService)
         {
             this._productCategoryService = productCategoryService;
         }
 
         [Route("GetAll")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
+                int totalRow = 0;
+
                 var model = _productCategoryService.GetAll();
 
-                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+                totalRow = model.Count();
+                var query = model.OrderByDescending(i => i.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+
+                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    TotalCount = totalRow,
+                    Items = responseData,
+                    Page = page,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
 
                 return response;
             });
