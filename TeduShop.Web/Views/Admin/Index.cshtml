@@ -66,7 +66,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     <a ui-sref="products">Sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a ui-sref="product_add">Media Objects</a>
+                                    <a ui-sref="product_category">Danh mục sản phẩm</a>
                                 </li>
                             </ul>
                             <!-- /nav-second-level -->
@@ -391,12 +391,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="~/app/shared/modules/tedushop.common.js"></script>
+    <script src="~/app/shared/services/apiService.js"></script>
+
+    <!--Module-->
     <script src="~/app/components/products/products.module.js"></script>
+    <script src="~/app/components/product_categories/productCategories.module.js"></script>
+
     <script src="~/app/app.js"></script>
 
     <script src="~/app/components/products/productAddController.js"></script>
     <script src="~/app/components/products/productListController.js"></script>
     <script src="~/app/components/products/productEditController.js"></script>
+
+    <script src="~/app/components/product_categories/productCategoryListController.js"></script>
     <script src="~/app/components/home/homeController.js"></script>
 </body>
 </html>
