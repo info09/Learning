@@ -34,7 +34,7 @@
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy'}}</td>
                         <td class="badge">{{item.Status | statusFilter}}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i></button>
+                            <button class="btn btn-sm btn-primary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>

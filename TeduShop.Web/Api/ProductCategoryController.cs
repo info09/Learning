@@ -66,6 +66,43 @@ namespace TeduShop.Web.Api
             });
         }
 
+        [Route("GetById/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+
+                var resData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                var res = request.CreateResponse(HttpStatusCode.OK, resData);
+
+                return res;
+            });
+        }
+
+        [Route("Update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var productCategory = _productCategoryService.GetById(productCategoryVM.ID);
+
+                productCategory.UpdateProductCategory(productCategoryVM);
+
+                _productCategoryService.Update(productCategory);
+                _productCategoryService.Save();
+
+                var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+
+                response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                return response;
+            });
+        }
+
         [Route("Create")]
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVM)
