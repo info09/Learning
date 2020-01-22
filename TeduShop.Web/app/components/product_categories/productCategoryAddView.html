@@ -8,14 +8,17 @@
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Tên danh mục</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control1" ng-model="productCategory.Name" name="name" />
+                            <input type="text" class="form-control1" ng-maxlength="256" required ng-model="productCategory.Name" name="name" />
+                            <span ng-show="frmAddProductCategory.name.$invalid" class="has-error">Phải nhập tên danh mục</span>
+                            <span ng-show="frmAddProductCategory.name.$error.maxlength" class="has-error">Tên danh mục tối đa 256 kí tự</span>
                         </div>
                         
                     </div>
                     <div class="form-group">
                         <label for="disabledinput" class="col-sm-3 control-label">Tiêu đề SEO</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control1" name="alias" ng-model="productCategory.Alias" />
+                            <input type="text" class="form-control1" required name="alias" ng-model="productCategory.Alias" />
+                            <span ng-show="frmAddProductCategory.alias.$invalid" class="has-error">Phải nhập tiêu đề SEO</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,7 +41,8 @@
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-3 control-label">Thứ tự hiển thị</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control1" name="displayOrder" ng-model="productCategory.DisplayOrder" />
+                            <input type="number" class="form-control1" required name="displayOrder" ng-model="productCategory.DisplayOrder" />
+                            <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="has-error">Phải nhập thứ tự</span>
                         </div>
                     </div>
 
@@ -76,7 +80,7 @@
                     </div>
                     <div class="col-sm-offset-2">
                         <button class="btn btn-default" ui-sref="product_category">Hủy</button>
-                        <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-primary">Thêm mới</button>
                     </div>
                 </form>
             </div>

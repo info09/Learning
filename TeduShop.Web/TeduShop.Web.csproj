@@ -234,6 +234,7 @@
     <Content Include="Assets\admin\css\bootstrap.css" />
     <Content Include="Assets\admin\css\clndr.css" />
     <Content Include="Assets\admin\css\custom.css" />
+    <Content Include="Assets\admin\css\customize.css" />
     <Content Include="Assets\admin\css\font-awesome.css" />
     <Content Include="Assets\admin\css\jqvmap.css" />
     <Content Include="Assets\admin\css\style.css" />
