@@ -19,6 +19,7 @@
             getProductCategories();
         }
 
+
         function getProductCategories(page) {
             page = page || 0;
 
@@ -33,8 +34,6 @@
             apiService.get('/api/ProductCategory/GetAll', config, function(result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không tìm thấy bản ghi nào');
-                } else {
-                    notificationService.displaySuccess('Đã tìm thấy ' + result.data.TotalCount + ' bản ghi');
                 }
                 $scope.productCategory = result.data.Items;
                 $scope.page = result.data.Page;

@@ -8,6 +8,7 @@ using System.Web.Http;
 using TeduShop.Model.Models;
 using TeduShop.Service;
 using TeduShop.Web.Infrastructure.Core;
+using TeduShop.Web.Infrastructure.Extension;
 using TeduShop.Web.Models;
 
 namespace TeduShop.Web.Api
@@ -32,7 +33,7 @@ namespace TeduShop.Web.Api
                 var model = _productCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
-                var query = model.OrderByDescending(i => i.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var query = model.OrderBy(i => i.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
 
@@ -45,6 +46,49 @@ namespace TeduShop.Web.Api
                 };
 
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+
+                return response;
+            });
+        }
+
+        [Route("GetAllParents")]
+        [HttpGet]
+        public HttpResponseMessage GetAllParent(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetAll();
+
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("Create")]
+        [HttpPost]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVM)
+        {
+            return CreateHttpResponse(request, () =>  {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    ProductCategory productCategory = new ProductCategory();
+                    productCategory.UpdateProductCategory(productCategoryVM);
+
+                    _productCategoryService.Add(productCategory);
+                    _productCategoryService.Save();
+
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
 
                 return response;
             });

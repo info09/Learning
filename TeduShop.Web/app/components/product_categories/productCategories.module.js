@@ -9,12 +9,12 @@
                 url: "/product_category",
                 templateUrl: "/app/components/product_categories/productCategoryListView.html",
                 controller: "productCategoryListController"
+            })
+            .state('add_product_category', {
+                url: "/add_product_category",
+                templateUrl: "/app/components/product_categories/productCategoryAddView.html",
+                controller: "productCategoryAddController"
             });
-            //.state('product_add', {
-            //    url: "/product_add",
-            //    templateUrl: "/app/components/products/productAddView.html",
-            //    controller: "productAddController"
-            //})
             //.state('product_edit', {
             //    url: "/product_edit",
             //    templateUrl: "/app/components/products/productEditView.html",
