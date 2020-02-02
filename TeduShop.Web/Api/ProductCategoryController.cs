@@ -24,7 +24,7 @@ namespace TeduShop.Web.Api
 
         [Route("GetAll")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request,string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -107,7 +107,8 @@ namespace TeduShop.Web.Api
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVM)
         {
-            return CreateHttpResponse(request, () =>  {
+            return CreateHttpResponse(request, () =>
+            {
                 HttpResponseMessage response = null;
 
                 if (!ModelState.IsValid)
@@ -124,6 +125,30 @@ namespace TeduShop.Web.Api
 
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
 
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("Delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
+
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
 
