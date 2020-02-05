@@ -15,7 +15,7 @@ namespace TeduShop.Service
 
         void Update(Product product);
 
-        void Delete(int id);
+        Product Delete(int id);
 
         IEnumerable<Product> GetAll();
 
@@ -45,9 +45,9 @@ namespace TeduShop.Service
             return _productRepository.Add(product);
         }
 
-        public void Delete(int id)
+        public Product Delete(int id)
         {
-            _productRepository.Delete(id);
+           return  _productRepository.Delete(id);
         }
 
         public IEnumerable<Product> GetAll()
