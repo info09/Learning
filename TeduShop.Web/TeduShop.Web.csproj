@@ -222,6 +222,9 @@
     <Content Include="app\app.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\loginView.html" />
+    <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\products\products.module.js" />
     <Content Include="app\components\products\productAddController.js" />
     <Content Include="app\components\products\productAddView.html" />
@@ -242,6 +245,7 @@
     <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\services\commonService.js" />
     <Content Include="app\shared\services\notificationService.js" />
+    <Content Include="app\shared\views\baseView.html" />
     <Content Include="Assets\admin\css\animate.css" />
     <Content Include="Assets\admin\css\bootstrap.css" />
     <Content Include="Assets\admin\css\clndr.css" />
@@ -4943,7 +4947,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Libs\CKFinder.dll" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -4961,6 +4964,7 @@
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\client\" />
+    <Folder Include="Libs\" />
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Scripts\spa\" />
     <Folder Include="UploadedFiles\" />
