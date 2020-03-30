@@ -1,0 +1,88 @@
+﻿<div class="main-page">
+    <h3 class="title1">Danh mục sản phẩm</h3>
+    <div class="blank-page widget-shadow scroll" id="style-2 div1">
+        <div class="row">
+            <h4 class="title1">Cập nhật danh mục sản phẩm</h4>
+            <div class="form-three widget-shadow">
+                <form class="form-horizontal" novalidate name="frmUpdateProductCategory" role="form" ng-submit="UpdateProductCategory();">
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-3 control-label">Tên danh mục</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control1" required ng-change="GetSeoTitle();" ng-model="productCategory.Name" name="name" />
+                            <span ng-show="frmUpdateProductCategory.name.$invalid" class="has-error">Phải nhập tên danh mục</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="disabledinput" class="col-sm-3 control-label">Tiêu đề SEO</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control1" required name="alias" ng-model="productCategory.Alias" />
+                            <span ng-show="frmUpdateProductCategory.alias.$invalid" class="has-error">Phải nhập tiêu đề SEO</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-3 control-label">Mô tả ngắn</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control1" name="description" ng-model="productCategory.Description" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selector1" class="col-sm-3 control-label">Danh mục cha</label>
+                        <div class="col-sm-9">
+                            <select name="parentId" class="form-control1" ng-model="productCategory.ParentID" ng-options="option.ID as option.Name for option in parentCategory">
+                                <option value="">Danh mục gốc</option>
+                            </select>
+                            <input name="parentId" type="hidden" ng-model="productCategory.ParentID" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-3 control-label">Thứ tự hiển thị</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control1" required name="displayOrder" ng-model="productCategory.DisplayOrder" />
+                            <span ng-show="frmUpdateProductCategory.displayOrder.$invalid" class="has-error">Phải thứ tự hiển thị</span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="txtarea1" class="col-sm-3 control-label">Hình ảnh</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control1" name="image" ng-model="productCategory.Image" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smallinput" class="col-sm-3 control-label label-input-sm">Meta Keyword</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control1" name="metaKeyword" ng-model="productCategory.MetaKeyword" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mediuminput" class="col-sm-3 control-label">Meta Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control1" name="metaDescription" ng-model="productCategory.MetaDescription" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="largeinput" class="col-sm-3 control-label label-input-lg"></label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" name="status" ng-checked="productCategory.Status" ng-model="productCategory.Status" /> Kích hoạt
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="largeinput" class="col-sm-3 control-label label-input-lg"></label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" name="homeFlag" ng-model="productCategory.HomeFlag" ng-checked="productCategory.HomeFlag" /> Hiển thị trang chủ
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-2">
+                        <button class="btn btn-default" ui-sref="product_category">Hủy</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmUpdateProductCategory.$invalid">Cập nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
